@@ -1,0 +1,6 @@
+psycopg2-binary
+pika
+fastapi
+requests
+uvicorn
+sqlalchemy

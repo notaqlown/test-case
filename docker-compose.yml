@@ -1,0 +1,41 @@
+version: '3'
+services:
+  api_service:
+    build:
+      context: ./api
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - worker_service
+      - dummy_service
+      - postgres
+  worker_service:
+    build:
+      context: ./worker
+    restart: always
+    depends_on:
+      - rabbitmq
+      - postgres
+    links:
+      - rabbitmq
+  dummy_service:
+    build:
+      context: ./dummy
+    ports:
+      - "8001:8000"
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+
