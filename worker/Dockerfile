@@ -8,8 +8,6 @@ RUN pip install -r requirements.txt
 
 COPY wait-for-it.sh /app/wait-for-it.sh
 
-RUN chmod +x /app/wait-for-it.sh
-
 COPY . .
-
+RUN chmod +x /app/wait-for-it.sh
 CMD ["./wait-for-it.sh", "rabbitmq", "5672", "--", "python", "main.py"]
