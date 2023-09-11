@@ -43,3 +43,5 @@ async def get_info(req_id: str):
 @app.on_event("shutdown")
 async def shtdwn():
     connection.close()
+    session = Session()
+    session.close()
