@@ -34,7 +34,8 @@ async def get_info(req_id: str):
         response = GetResponseModel(req_id=data.id,
                                     cadastre=data.cadastre,
                                     lat=data.latitude,
-                                    lon=data.longitude)
+                                    lon=data.longitude,
+                                    calc=data.calc)
         return response
     else:
         return {"error": "Request not found"}

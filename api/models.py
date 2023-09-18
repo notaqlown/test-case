@@ -16,5 +16,4 @@ class GetResponseModel(BaseModel):
     cadastre: str
     lat: float
     lon: float
-
-
+    calc: bool
